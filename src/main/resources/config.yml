@@ -1,0 +1,13 @@
+#Configuration for Player Profile (Spigot) HNMC (Survival)
+
+settings:
+  servername: ""
+  plugin-enable: false
+
+mysql:
+  host: "localhost"
+  port: 3306
+  database: ""
+  username: ""
+  password: ""
+  use-ssl: false

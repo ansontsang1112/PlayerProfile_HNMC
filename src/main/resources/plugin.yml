@@ -1,0 +1,7 @@
+name: PlayerProfile
+version: '${project.version}'
+main: com.mc.hypernite.playerprofile.main.PlayerProfile
+api-version: 1.17
+authors: [ AnsonTsang ]
+description: Player Profile System (HyperNiteMC Survival)
+website: https://www.hypernite.com
