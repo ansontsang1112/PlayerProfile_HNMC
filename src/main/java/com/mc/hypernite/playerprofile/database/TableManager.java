@@ -29,41 +29,32 @@ public class TableManager {
             while (resultSet.next()) {
                 return true;
             }
-            resultSet.close();
         } catch (SQLException e) {
+            PlayerProfile.getPlugin(PlayerProfile.class).getLogger().info(Utils.prefix + " | " + ChatColor.RED + " Error: " + e);
             return false;
         }
         return false;
     }
 
-    private boolean createTable(String statement) {
+    private boolean createTable(DatabaseName table) {
         try (Statement stmt = connection.createStatement()) {
-            stmt.execute(statement);
+            stmt.execute(table.sql);
             stmt.close();
+            PlayerProfile.getPlugin(PlayerProfile.class).getLogger().info(Utils.prefix + " | " + ChatColor.AQUA + " Table " + table.label + " created successfully.");
             return true;
         } catch (SQLException e) {
-            System.out.println(e);
+            PlayerProfile.getPlugin(PlayerProfile.class).getLogger().info(Utils.prefix + " | " + ChatColor.RED + " Error: " + e);
             return false;
         }
     }
 
     public boolean tableInitialization() {
         boolean isSuccess = true;
-
         for(DatabaseName tableName : databaseNames) {
             if(!isTableExist(tableName)) {
-                if(createTable(tableName.sql)) {
-                    PlayerProfile.getPlugin(PlayerProfile.class).getLogger().info(Utils.prefix + " | " + ChatColor.AQUA + " Table " + tableName.label + " created successfully.");
-                } else {
-                    isSuccess = false;
-                    PlayerProfile.getPlugin(PlayerProfile.class).getLogger().info(Utils.prefix + " | " + ChatColor.RED + " Table " + tableName.label + " fail to create.");
-                }
+                if(!createTable(tableName)) isSuccess = false;
             }
         }
-
-        if(!isSuccess) return false;
-
-        PlayerProfile.getPlugin(PlayerProfile.class).getLogger().info(Utils.prefix + " | " + ChatColor.GREEN + " Table initialized successfully.");
-        return true;
+        return isSuccess;
     }
 }

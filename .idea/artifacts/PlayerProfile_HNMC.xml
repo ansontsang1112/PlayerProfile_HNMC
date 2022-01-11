@@ -3,6 +3,7 @@
     <output-path>$PROJECT_DIR$/out/artifacts/PlayerProfile_HNMC</output-path>
     <root id="archive" name="PlayerProfile_HNMC.jar">
       <element id="module-output" name="PlayerProfile" />
+      <element id="library" level="project" name="Maven: mysql:mysql-connector-java:5.1.47" />
     </root>
   </artifact>
 </component>
