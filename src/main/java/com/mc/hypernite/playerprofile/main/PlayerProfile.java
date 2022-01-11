@@ -3,6 +3,7 @@ package com.mc.hypernite.playerprofile.main;
 import com.mc.hypernite.playerprofile.database.DataSourcesManager;
 import com.mc.hypernite.playerprofile.database.DatabaseName;
 import com.mc.hypernite.playerprofile.database.TableManager;
+import com.mc.hypernite.playerprofile.listener.PlayerProfileListener;
 import com.mc.hypernite.playerprofile.manager.ConfigManager;
 import com.mc.hypernite.playerprofile.utils.ProfileController;
 import com.mc.hypernite.playerprofile.utils.Utils;
@@ -18,7 +19,7 @@ import java.util.UUID;
 public final class PlayerProfile extends JavaPlugin {
 
     private Plugin plugin;
-    private Connection connection;
+    public Connection connection;
     public static TreeMap<UUID, ProfileController> playerProfileMapping;
 
     @Override
@@ -42,6 +43,9 @@ public final class PlayerProfile extends JavaPlugin {
                 this.getLogger().info(Utils.prefix + " | " + ChatColor.RED + " Tables (DB) fail to initialized! Please check the database configuration.");
                 return;
             }
+
+            //Register Listener
+            this.getServer().getPluginManager().registerEvents(new PlayerProfileListener(), this);
 
             //Plugin Loaded Successfully
             this.getLogger().info(Utils.prefix + " | " + ChatColor.GREEN + " Plugin loaded Successfully");

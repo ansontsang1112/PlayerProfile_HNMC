@@ -6,7 +6,6 @@ import org.bukkit.ChatColor;
 
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class TableManager {
     private Connection connection;
@@ -22,18 +21,16 @@ public class TableManager {
         this.databaseNames.add(DatabaseName.MESSAGE_RECORD);
     }
 
+    //Unknown Error (Return False)
     private boolean isTableExist(DatabaseName tableName) {
         try {
             DatabaseMetaData databaseMetaData = connection.getMetaData();
             ResultSet resultSet = databaseMetaData.getTables(null, null, null, new String[]{tableName.label});
-            while (resultSet.next()) {
-                return true;
-            }
+            return resultSet.next();
         } catch (SQLException e) {
             PlayerProfile.getPlugin(PlayerProfile.class).getLogger().info(Utils.prefix + " | " + ChatColor.RED + " Error: " + e);
             return false;
         }
-        return false;
     }
 
     private boolean createTable(DatabaseName table) {
