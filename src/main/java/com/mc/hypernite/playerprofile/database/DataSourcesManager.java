@@ -10,8 +10,8 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class DataSourcesManager {
-    static String jdbcURL = "jdbc:mysql://" + ConfigManager.host +  ":" + ConfigManager.port +  "" +
-            "/" + ConfigManager.database + "?useSSL=false&useUnicode=true&characterEncoding=UTF-8";
+    static String jdbcURL = "jdbc:mysql://" + ConfigManager.host +  ":" + ConfigManager.port +
+            "/" + ConfigManager.database + "?useSSL=false&autoReconnect=true&useUnicode=true&characterEncoding=UTF-8";
 
     public static Connection getConnection() {
         try (Connection connection = DriverManager.getConnection(jdbcURL, ConfigManager.username, ConfigManager.password)) {

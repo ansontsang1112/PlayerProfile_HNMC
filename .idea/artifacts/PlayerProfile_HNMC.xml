@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="PlayerProfile_HNMC">
+    <output-path>$PROJECT_DIR$/out/artifacts/PlayerProfile_HNMC</output-path>
+    <root id="archive" name="PlayerProfile_HNMC.jar">
+      <element id="module-output" name="PlayerProfile" />
+    </root>
+  </artifact>
+</component>

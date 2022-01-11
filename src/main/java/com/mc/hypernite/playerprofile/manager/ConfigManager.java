@@ -15,7 +15,7 @@ public class ConfigManager {
     //Configuration Extraction
     public static String serverName, host, database, username, password;
     public static boolean isPluginEnable, isMysqlSSLEnable;
-    public static int port;
+    public static int port, syncInterval;
 
     private ConfigManager(Plugin plugin) {
         configFile = new File(plugin.getDataFolder(), "config.yml");
@@ -33,9 +33,9 @@ public class ConfigManager {
     }
 
     public void loadConfig() {
-        serverName = configuration.getString("setting.servername");
-        isPluginEnable = configuration.getBoolean("setting.plugin-enable");
-
+        serverName = configuration.getString("settings.servername");
+        isPluginEnable = configuration.getBoolean("settings.plugin-enable");
+        syncInterval = configuration.getInt("settings.sync-interval");
         host = configuration.getString("mysql.host");
         database = configuration.getString("mysql.database");
         username = configuration.getString("mysql.username");

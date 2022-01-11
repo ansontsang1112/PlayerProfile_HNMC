@@ -3,6 +3,7 @@
 settings:
   servername: ""
   plugin-enable: false
+  sync-interval: 3 #in seconds
 
 mysql:
   host: "localhost"
