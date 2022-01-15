@@ -15,6 +15,7 @@ import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 
 import java.sql.Timestamp;
+import java.util.Date;
 import java.util.HashMap;
 
 public class PlayerProfileListener extends PlayerIO implements Listener {
@@ -27,15 +28,16 @@ public class PlayerProfileListener extends PlayerIO implements Listener {
             ProfileDataManager profileDataManager = new ProfileDataManager(DataSourcesManager.getConnection());
             HashMap<String, Object> mappedData = profileController.getMappedProfile();
             mappedData.put("account_state", "active");
-            mappedData.put("first_join", new Timestamp(System.currentTimeMillis()));
+            mappedData.put("first_join", new Date().getTime());
             mappedData.put("discord_id", "N/A");
             profileDataManager.insert(DatabaseName.GENERAL_PROFILE, mappedData);
             PlayerProfile.getPlugin(PlayerProfile.class).getLogger().info(Utils.prefix + " | " + ChatColor.GREEN + e.getPlayer().getName() + "'s profile was created.");
         }
 
         PlayerProfile.getPlugin(PlayerProfile.class).getLogger().info(Utils.prefix + " | " + ChatColor.GREEN + e.getPlayer().getName() + " Joined the game.");
-
     }
+
+
 
     @Override @EventHandler
     public void onPlayerLeave(PlayerQuitEvent e) {

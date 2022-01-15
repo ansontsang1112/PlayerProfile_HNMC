@@ -1,5 +1,16 @@
 package com.mc.hypernite.playerprofile.utils;
 
+import java.util.UUID;
+
 public class Utils {
     public static String prefix = "HNPPS";
+
+    public static String UUIDModifier(UUID uuid) {
+        String suuid = uuid.toString();
+        String [] splitedUUID = suuid.split("-");
+        for(String u : splitedUUID) {
+            suuid += u;
+        }
+        return suuid;
+    }
 }

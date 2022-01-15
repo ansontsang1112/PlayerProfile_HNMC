@@ -23,4 +23,17 @@ public class DatabaseUtils {
             return false;
         }
     }
+
+    public static String getRIDForNFC(UUID playerUUID, Connection connection) {
+        String sql = "SELECT rid FROM " + DatabaseName.SW_DATA.label + "' WHERE uuid = '" + playerUUID + "' AND logout_time = 'N/A'";
+
+        try (Statement statement = connection.createStatement()) {
+            ResultSet resultSet = statement.executeQuery(sql);
+            if(!resultSet.next()) throw new SQLException();
+            return resultSet.getString("rid");
+        } catch (SQLException e) {
+            //System.out.println(e.getMessage()); #For Test Only (Result Set)
+            return "Not Found";
+        }
+    }
 }

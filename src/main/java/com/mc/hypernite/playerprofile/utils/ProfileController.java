@@ -19,6 +19,10 @@ public class ProfileController {
         return player.getLocation();
     }
 
+    public String getCurrentXYZ() {
+       return getCurrentLocation().getX() + " " + getCurrentLocation().getY() + " " + getCurrentLocation().getZ();
+    }
+
     public Location getBedLocation() {
         return (player.getBedSpawnLocation() == null) ? new Location(player.getWorld(), 0,0,0) : player.getBedSpawnLocation();
     }
@@ -42,12 +46,12 @@ public class ProfileController {
     public HashMap<String, Object> getMappedProfile() {
         HashMap<String, Object> map = new HashMap<>();
         map.put("uuid", getUUID());
-        map.put("world", getCurrentLocation().getWorld());
+        map.put("world", getCurrentLocation().getWorld().getName());
         map.put("vector", getCurrentLocation().getX() + " " + getCurrentLocation().getY() + " " + getCurrentLocation().getZ());
         map.put("bedSpawn", getBedLocation().toString());
         map.put("xp", getXP());
         map.put("health", getHealth());
-        map.put("ip", getSocketAddress().getAddress().toString());
+        map.put("ip", getSocketAddress().getAddress().getHostAddress());
 
         return map;
     }
