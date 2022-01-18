@@ -1,9 +1,11 @@
 package com.mc.hypernite.playerprofile.utils;
 
-import java.util.UUID;
+import java.util.*;
 
 public class Utils {
     public static String prefix = "HNPPS";
+
+    public static TreeMap<Object, HashMap<String, Object>> commandMaps = new TreeMap<>();
 
     public static String UUIDModifier(UUID uuid) {
         String suuid = uuid.toString();

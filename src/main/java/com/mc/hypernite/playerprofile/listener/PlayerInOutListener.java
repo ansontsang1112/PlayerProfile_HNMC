@@ -43,7 +43,7 @@ public class PlayerInOutListener extends PlayerIO {
 
             profileDataManager.update(DatabaseName.SW_DATA, "logout_time", currentTime, "rid", key);
             profileDataManager.update(DatabaseName.SW_DATA, "last_loc", profileController.getCurrentXYZ(), "rid", key);
-            profileDataManager.update(DatabaseName.SW_DATA, "last_world", profileController.getCurrentLocation().getWorld().getName(), "uuid", key);
+            profileDataManager.update(DatabaseName.SW_DATA, "last_world", profileController.getCurrentLocation().getWorld().getName(), "rid", key);
             profileDataManager.update(DatabaseName.SW_DATA, "health", profileController.getHealth(), "rid", key);
             profileDataManager.update(DatabaseName.SW_DATA, "xp", profileController.getXP(), "rid", key);
         }
