@@ -46,6 +46,8 @@ public class PlayerInOutListener extends PlayerIO {
             profileDataManager.update(DatabaseName.SW_DATA, "last_world", profileController.getCurrentLocation().getWorld().getName(), "rid", key);
             profileDataManager.update(DatabaseName.SW_DATA, "health", profileController.getHealth(), "rid", key);
             profileDataManager.update(DatabaseName.SW_DATA, "xp", profileController.getXP(), "rid", key);
+        } else {
+            Utils.errorLogger("Cannot Sync Logout Message to Database!");
         }
     }
 }

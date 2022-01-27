@@ -16,8 +16,10 @@ public class PlayerCommandListener implements Listener {
     public void onCommandTyped(PlayerCommandPreprocessEvent e) {
 
         HashMap<String, Object> hashMap = new HashMap<>();
+        String randomID = Utils.UUIDModifier(UUID.randomUUID());
 
         //Prepared Data
+        hashMap.put("rid", randomID);
         hashMap.put("uuid", e.getPlayer().getUniqueId());
         hashMap.put("command", e.getMessage());
         hashMap.put("timestamp", new Date().getTime());
@@ -25,6 +27,6 @@ public class PlayerCommandListener implements Listener {
         hashMap.put("server", ConfigManager.serverName);
 
         //Adopt the data to Global Map
-        Utils.commandMaps.put(Utils.UUIDModifier(UUID.randomUUID()), hashMap);
+        Utils.commandList.add(hashMap);
     }
 }

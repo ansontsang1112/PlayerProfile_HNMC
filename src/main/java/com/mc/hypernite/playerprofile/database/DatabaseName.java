@@ -17,7 +17,7 @@ public enum DatabaseName {
     GENERAL_PROFILE("player_general_profile", TableName.generalProfileSQL),
     SW_DATA("player_sw_data", TableName.swDataSQL),
     COMMAND_RECORD("player_command_record", TableName.commandRecordSQL),
-    DEATH_RECORD("Player_death_record", TableName.deathRecordSQL),
+    DEATH_RECORD("player_death_record", TableName.deathRecordSQL),
     MESSAGE_RECORD("player_message_record", TableName.messageRecordSQL);
 
     public final String label, sql;

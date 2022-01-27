@@ -4,10 +4,12 @@ import com.mc.hypernite.playerprofile.database.DataSourcesManager;
 import com.mc.hypernite.playerprofile.database.DatabaseName;
 import com.mc.hypernite.playerprofile.database.TableManager;
 import com.mc.hypernite.playerprofile.listener.PlayerCommandListener;
+import com.mc.hypernite.playerprofile.listener.PlayerDeathListener;
 import com.mc.hypernite.playerprofile.listener.PlayerInOutListener;
 import com.mc.hypernite.playerprofile.listener.PlayerProfileListener;
 import com.mc.hypernite.playerprofile.manager.ConfigManager;
 import com.mc.hypernite.playerprofile.manager.ProfileDataManager;
+import com.mc.hypernite.playerprofile.utils.DatabaseUtils;
 import com.mc.hypernite.playerprofile.utils.ProfileController;
 import com.mc.hypernite.playerprofile.utils.Utils;
 import org.bukkit.Bukkit;
@@ -17,6 +19,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.TreeMap;
 import java.util.UUID;
 import java.util.concurrent.TimeUnit;
@@ -25,7 +28,6 @@ public final class PlayerProfile extends JavaPlugin {
 
     public Plugin plugin;
     public Connection connection;
-    public static TreeMap<UUID, ProfileController> playerProfileMapping;
 
     @Override
     public void onEnable() {
@@ -53,15 +55,19 @@ public final class PlayerProfile extends JavaPlugin {
             this.getServer().getPluginManager().registerEvents(new PlayerProfileListener(), this);
             this.getServer().getPluginManager().registerEvents(new PlayerInOutListener(), this);
             this.getServer().getPluginManager().registerEvents(new PlayerCommandListener(), this);
+            this.getServer().getPluginManager().registerEvents(new PlayerDeathListener(), this);
 
             //Plugin Loaded Successfully
             this.getLogger().info(Utils.prefix + " | " + ChatColor.GREEN + " Plugin loaded Successfully");
 
+
             //Sync Data to Database within a period of time
             Bukkit.getScheduler().runTaskTimer(plugin, () -> {
-                //Get TreeMap data and try to sync
+                //Get Command data and try to sync
+                if(!DatabaseUtils.syncToDatabase(DatabaseName.COMMAND_RECORD, Utils.commandList)) {Utils.errorLogger("Sync Command Fail.");} else {Utils.commandList.clear();}
+                if(!DatabaseUtils.syncToDatabase(DatabaseName.DEATH_RECORD, Utils.deathList)) {Utils.errorLogger("Sync Death Message Fail.");} else {Utils.deathList.clear();}
 
-
+                Utils.errorLogger("Sync Completed.");
             }, 20L * 60, 20L * ConfigManager.syncInterval); //Sync after the plugin run 1 min and each "interval" seconds.
         }
     }

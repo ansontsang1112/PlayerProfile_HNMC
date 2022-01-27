@@ -38,13 +38,12 @@ public class ProfileDataManager implements SQLControlManagerInterface {
             case COMMAND_RECORD:
                 syntax =  "INSERT INTO " + databaseName.label + " VALUES ('" + data.get("rid") + "', '"+ data.get("uuid") +"', '" + data.get("command") + "" +
                         "', '" + data.get("timestamp") + "'," +
-                        "'" + data.get("world") + "', '" + data.get("world") + "')";
+                        "'" + data.get("world") + "', '" + data.get("server") + "')";
                 break;
 
             case DEATH_RECORD:
-                syntax =  "INSERT INTO " + databaseName.label + " VALUES ('" + data.get("rid") + "', '"+ data.get("uuid") +"', '" + data.get("attacker") + "" +
-                        "', '" + data.get("reason") + "'," +
-                        "'" + data.get("timestamp") + "', '" + data.get("world") + "', '" + data.get("vector") + "', '" + data.get("server") + "')";
+                syntax =  "INSERT INTO " + databaseName.label + " VALUES ('" + data.get("rid") + "', '"+ data.get("uuid") +"', '" + data.get("attacker") + "', '" + data.get("reason") + "'," +
+                        "'" + data.get("timestamp") + "', '" + data.get("world") + "', '" + data.get("location") + "', '" + data.get("server") + "')";
                 break;
 
             case MESSAGE_RECORD:
