@@ -32,8 +32,7 @@ public class PlayerDeathListener implements Listener {
 
         //Prepared Data
         hashMap.put("rid", recordID);
-        hashMap.put("uuid", p.getUniqueId());
-        hashMap.put("attacker", new IsNullObject().isObjectNull(e.getEntity().getKiller()));
+        hashMap.put("uuid", new IsNullObject().isObjectNull(p.getUniqueId()));
         hashMap.put("reason", e.getDeathMessage());
         hashMap.put("timestamp", new Date().getTime());
         hashMap.put("world", p.getWorld().getName());

@@ -67,7 +67,7 @@ public final class PlayerProfile extends JavaPlugin {
                 if(!DatabaseUtils.syncToDatabase(DatabaseName.COMMAND_RECORD, Utils.commandList)) {Utils.errorLogger("Sync Command Fail.");} else {Utils.commandList.clear();}
                 if(!DatabaseUtils.syncToDatabase(DatabaseName.DEATH_RECORD, Utils.deathList)) {Utils.errorLogger("Sync Death Message Fail.");} else {Utils.deathList.clear();}
 
-                Utils.errorLogger("Sync Completed.");
+                //Utils.errorLogger("Sync Completed.");
             }, 20L * 60, 20L * ConfigManager.syncInterval); //Sync after the plugin run 1 min and each "interval" seconds.
         }
     }

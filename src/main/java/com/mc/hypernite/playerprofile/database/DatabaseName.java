@@ -7,7 +7,7 @@ class TableName {
             "login_time long, logout_time long, health int(11), xp int(11), server varchar(30))";
     static String commandRecordSQL = "CREATE TABLE IF NOT EXISTS player_command_record (rid varchar(150), uuid varchar(50),command varchar(1000), timestamp long, world varchar(30)," +
             "server varchar(30))";
-    static String deathRecordSQL = "CREATE TABLE IF NOT EXISTS player_death_record (rid varchar(150), uuid varchar(50),attacker varchar(20), reason varchar(5000)," +
+    static String deathRecordSQL = "CREATE TABLE IF NOT EXISTS player_death_record (rid varchar(150), uuid varchar(50), reason varchar(5000)," +
             "timestamp long, world varchar(30), location varchar(30), server varchar(30))";
     static String messageRecordSQL = "CREATE TABLE IF NOT EXISTS player_message_record (rid varchar(150), uuid varchar(50),message varchar(5000), timestamp long, world varchar(30)," +
             "location varchar(30), server varchar(30))";

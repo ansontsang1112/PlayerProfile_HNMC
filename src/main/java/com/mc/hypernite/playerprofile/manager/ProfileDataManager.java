@@ -42,7 +42,7 @@ public class ProfileDataManager implements SQLControlManagerInterface {
                 break;
 
             case DEATH_RECORD:
-                syntax =  "INSERT INTO " + databaseName.label + " VALUES ('" + data.get("rid") + "', '"+ data.get("uuid") +"', '" + data.get("attacker") + "', '" + data.get("reason") + "'," +
+                syntax =  "INSERT INTO " + databaseName.label + " VALUES ('" + data.get("rid") + "', '"+ data.get("uuid") +"', '" + data.get("reason") + "'," +
                         "'" + data.get("timestamp") + "', '" + data.get("world") + "', '" + data.get("location") + "', '" + data.get("server") + "')";
                 break;
 

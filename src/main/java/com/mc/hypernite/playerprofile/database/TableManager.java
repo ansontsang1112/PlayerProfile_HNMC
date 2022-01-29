@@ -25,7 +25,7 @@ public class TableManager {
     private boolean isTableExist(DatabaseName tableName) {
         try {
             DatabaseMetaData databaseMetaData = connection.getMetaData();
-            ResultSet resultSet = databaseMetaData.getTables(null, null, null, new String[]{tableName.label});
+            ResultSet resultSet = databaseMetaData.getTables(null, null, tableName.label, null);
             return resultSet.next();
         } catch (SQLException e) {
             PlayerProfile.getPlugin(PlayerProfile.class).getLogger().info(Utils.prefix + " | " + ChatColor.RED + " Error: " + e);
